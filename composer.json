@@ -1,0 +1,17 @@
+{
+    "name": "igor/consultant-test",
+    "autoload": {
+        "psr-4": {
+            "Igor\\ConsultantTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Igor Zavaleev",
+            "email": "igor.zavaleev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    }
+}

@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+
+  database:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: chess
+    ports:
+      - 3306:3306
+    networks:
+      - app-network
+
+  webserver:
+    build:
+      context: .
+      dockerfile: docker-config/webserver/Dockerfile
+    image: consultant/webserver
+    container_name: webserver
+    ports:
+      - "80:80"
+    volumes:
+#       - .:/www
+       - ./logs:/var/log/nginx
+    networks:
+      - app-network
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker-config/php/Dockerfile
+    image: consultant/php
+    container_name: php
+#    volumes:
+#      - .:/www
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
